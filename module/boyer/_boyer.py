@@ -10,6 +10,7 @@ import random as _random
 
 __all__ = ['hello', 'delay_print', 'clear', 'get_num', 'memify', 'clean', 'encrypt', 'decrypt', 'capitalize']
 
+
 def hello(name):
     """Takes in a name, greets the person of that name with a string return
 
@@ -21,6 +22,7 @@ def hello(name):
     """
     string = f"Hello {name}, my name is Andrew Boyer"
     return string
+
 
 def delay_print(string, level=4, end=''):
     """Takes in string, prints one character at a time on a certain interval
@@ -43,11 +45,12 @@ def delay_print(string, level=4, end=''):
         _time.sleep(speed)
     print(end)
 
+
 def clear():
     """Clears the terminal screen using the appropriate command specific to the os
 
     Args:
-        void (no args)
+        No arguments
 
     Returns:
         void (returns nothing)
@@ -57,11 +60,12 @@ def clear():
     else:
         _os.system('clear')
 
+
 def memify(text):
     """Returns the inputted string with random letters capitalized
 
     Args:
-        text[str]: the text you want to modified
+        text[str]: the text you want to modify
 
     Returns:
         new[str]: the modified text
@@ -76,8 +80,10 @@ def memify(text):
     new = ''.join(new)
     return new
 
+
 def clean(string):
     return string.strip().lower()
+
 
 def encrypt(string, key=3, cipher='caesar', alphabet='abcdefghijklmnopqrstuvwxyz'):
     def find(string1, char):
@@ -85,22 +91,24 @@ def encrypt(string, key=3, cipher='caesar', alphabet='abcdefghijklmnopqrstuvwxyz
             if string1[i] == char:
                 return i
         return -1
+
     def caesar():
-        finalString = ''
+        final_string = ''
         for character in string.strip():
             upper = False
             if character == character.upper():
                 upper = True
             position = find(alphabet, character.lower())
             if position == -1:
-                finalString += character
+                final_string += character
             else:
-                newPosition = (position + key) % len(alphabet)
+                new_position = (position + key) % len(alphabet)
                 if upper:
-                    finalString += alphabet[newPosition].upper()
+                    final_string += alphabet[new_position].upper()
                 else:
-                    finalString += alphabet[newPosition]
-        return finalString
+                    final_string += alphabet[new_position]
+        return final_string
+
     if cipher == 'caesar':
         return caesar()
 
@@ -111,35 +119,39 @@ def decrypt(string, key=3, cipher='caesar', alphabet='abcdefghijklmnopqrstuvwxyz
             if string1[i] == char:
                 return i
         return -1
+
     def caesar():
-        finalString = ''
+        final_string = ''
         for character in string.strip():
             upper = False
             if character == character.upper():
                 upper = True
             position = find(alphabet, character.lower())
             if position == -1:
-                finalString += character
+                final_string += character
             else:
-                newPosition = (position - key) % len(alphabet)
+                new_position = (position - key) % len(alphabet)
                 if upper:
-                    finalString += alphabet[newPosition].upper()
+                    final_string += alphabet[new_position].upper()
                 else:
-                    finalString += alphabet[newPosition]
-        return finalString
+                    final_string += alphabet[new_position]
+        return final_string
+
     if cipher == 'caesar':
         return caesar()
+
 
 def capitalize(string, sentence=False):
     if len(string) < 2:
         return string.upper()
     if sentence:
         return string[0].upper() + string[1:]
-    finalString = ""
+    final_string = ""
     words = string.strip().split()
     for word in words:
-        finalString += word[0].upper() + word[1:].lower() + " "
-    return finalString.strip()
+        final_string += word[0].upper() + word[1:].lower() + " "
+    return final_string.strip()
+
 
 def get_num(prompt="Enter a number", start="default", finish="default",
             integer=False, round_up=False, round_num=0.5, error_message=False):
@@ -152,7 +164,7 @@ def get_num(prompt="Enter a number", start="default", finish="default",
         finish[int or float]: the value that the number must be less than (finish > num)
         integer[boolean]: true or false statement that decides if the value must be an int
         round_up[boolean]: true or false statement that decides if it will "round up" the number
-        round_num[float]: float that will determine whether or not a rounding is appropriate
+        round_num[float]: float that will determine whether a rounding is appropriate
         error_message[boolean]: if not false, this custom error message will override all others
 
     Returns:
@@ -183,7 +195,9 @@ def get_num(prompt="Enter a number", start="default", finish="default",
             continue
         # if default, skip and just return num
         if finish != "default":
+            finish = float(finish)
             if start != "default":
+                start = float(start)
                 if start <= number <= finish:
                     return number
                 if not error_message:
