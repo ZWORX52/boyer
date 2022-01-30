@@ -72,8 +72,8 @@ def memify(text):
     """
     new = []
     for i in text:
-        r = _random.randint(0, 1)
-        if r == 1:
+        r = _random.randrange(2)
+        if r:
             new.append(i.upper())
         else:
             new.append(i.lower())
